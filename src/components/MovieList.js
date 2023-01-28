@@ -43,9 +43,9 @@ const MovieList = () => {
       }
    };
 
-   useEffect(() => {
-      loadMovies();
-   }, [genreId, searchQuery]);
+   // useEffect(() => {
+   //    loadMovies();
+   // }, [genreId, searchQuery]);
 
    // show Genre
    const handleGenreClick = (genreId) => {
