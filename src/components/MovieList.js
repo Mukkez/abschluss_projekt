@@ -23,6 +23,10 @@ const MovieList = () => {
       }
    }, [location.search]);
 
+   useEffect(() => {
+      loadMovies();
+   }, [genreId, searchQuery]);
+
    const loadMovies = async () => {
       let result;
       if (searchQuery) {
@@ -32,7 +36,7 @@ const MovieList = () => {
       } else if (genreId) {
          let modifiedGenreId = genreId.replace('&name', '');
          result = await defaultApi.getMoviesByGenre(modifiedGenreId, page);
-         setMovies([...movies, ...result.data.results.filter((movie) => movie.genre_ids[0] === modifiedGenreId)]);
+         setMovies([...movies, ...result.data.results.filter((movie) => movie.genre_ids[0] == modifiedGenreId)]);
       } else {
          result = await defaultApi.getMovies(page);
          setMovies([...movies, ...result.data.results]);
@@ -42,10 +46,6 @@ const MovieList = () => {
          setHasMore(false);
       }
    };
-
-   // useEffect(() => {
-   //    loadMovies();
-   // }, [genreId, searchQuery]);
 
    // show Genre
    const handleGenreClick = (genreId) => {
