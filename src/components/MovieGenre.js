@@ -9,7 +9,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const MovieGenre = ({ onGenreClick }) => {
-   const [activeGenre, setActiveGenre] = useState(null);
+   // const [activeGenre, setActiveGenre] = useState(null);
    const location = useLocation();
 
    const [activeGenreId, setActiveGenreId] = useState(null);
@@ -18,9 +18,9 @@ const MovieGenre = ({ onGenreClick }) => {
 
    useEffect(() => {
       if (location.pathname === '/genres') {
-         const genre = location.search.split('=')[1];
-         setActiveGenre(genre);
-         onGenreClick(genre);
+         // const genre = location.search.split('=')[1];
+         // setActiveGenreId(genre);
+         // onGenreClick(genre);
       }
    }, [location]);
 
