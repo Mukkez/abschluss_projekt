@@ -1,0 +1,42 @@
+.movielist-contrainer {
+  background: #fff;
+  width: 100vw;
+  height: 100vh;
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; */
+  overflow: auto;
+}
+
+.movie-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+
+.load-more-btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.load-more-btn {
+  height: 62px;
+  width: 209px;
+  background: #FC2121;
+  border: none;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: #F1F1F1;
+  border-radius: 10px;
+  margin: 40px 0 60px 0;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

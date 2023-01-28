@@ -1,0 +1,98 @@
+.intro-app-container {
+  background: #821D1D;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.intro-app-header {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 42px;
+  text-align: center;
+  color: #1A1A1A;
+}
+
+.intro-app-text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 35px;
+  text-align: center;
+  color: #232323;
+}
+
+.img-container {
+  position: relative;
+  top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-container img {
+  width: 100%;
+  height: auto;
+}
+
+.img-container img:nth-of-type(1) {
+  position: absolute;
+  z-index: 1;
+  top: -210px;
+}
+
+.img-container img:nth-of-type(2) {
+  position: relative;
+  transform: translateX(30%) translateY(-22%);
+  z-index: 2;
+}
+
+.img-container img:nth-of-type(3) {
+  position: relative;
+  transform: translateX(-30%) translateY(-14%);
+  z-index: 2;
+}
+
+.text-container {
+  position: absolute;
+  background-color: #fff;
+  height: 480px;
+  top: 556px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  z-index: 3;
+}
+
+.intro-app-header {
+  margin: 20px 0 30px 0;
+}
+
+.intro-app-text {
+  width: 95%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 35px;
+  color: #232323;
+}
+
+.intro-app-button {
+  height: 62px;
+  width: 209px;
+  background: #FC2121;
+  border: none;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: #F1F1F1;
+  border-radius: 10px;
+  margin: 40px 0 60px 0;
+}

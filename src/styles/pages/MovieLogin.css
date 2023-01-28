@@ -1,0 +1,108 @@
+.movie-login-container {
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #fff;
+}
+
+.movie-login-box {
+  background: #fff;
+  width: 400px;
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.movie-login-title {
+  margin-bottom: 30px;
+  font-size: 22px;
+  color: #FC2121;
+}
+
+.movie-login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movie-login-input {
+  width: 100%;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.movie-login-submit-btn {
+  width: 100%;
+  background-color: #FC2121;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.movie-login-switch {
+  margin-top: 20px;
+  text-align: center;
+  cursor: pointer;
+  color: #FC2121;
+}
+
+.movie-register-box {
+  background: #fff;
+  width: 400px;
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.movie-register-title {
+  margin-bottom: 30px;
+  font-size: 22px;
+  color: #FC2121;
+}
+
+.movie-register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movie-register-input {
+  width: 100%;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.movie-register-submit-btn {
+  width: 100%;
+  background-color: #FC2121;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.movie-register-switch {
+  margin-top: 20px;
+  text-align: center;
+  cursor: pointer;
+  color: #FC2121;
+}
+
+.movie-submit-button:hover {
+  background-color: #45a049;
+}

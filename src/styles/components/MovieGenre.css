@@ -1,0 +1,70 @@
+.movie-genre-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.movie-genre-container .btn {
+  background: #FBF8FF;
+  border: none;
+  height: 45px;
+  border-radius: 15px;
+  margin: 10px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000000;
+  min-width: 140px;
+  width: auto;
+  padding: 0 5px;
+}
+
+
+.movie-genre-container .btn.active {
+  background: #FC2121;
+  color: #fff;
+}
+
+
+.movie-genre-container .slick-slide {
+  text-align: center;
+}
+
+.movie-genre-container .slick-initialized {
+  width: 80vw !important;
+}
+
+.slick-slide button {
+  background: #FBF8FF;
+  color: black;
+  border-radius: 10px;
+  padding: 10px 5px;
+  font-size: 17.5px;
+  white-space: nowrap;
+}
+
+.movie-genre-container .slick-dots {
+  bottom: -30px;
+}
+
+.movie-genre-container .slick-dots li button:before {
+  color: black;
+}
+
+.movie-genre-container .slick-prev:before,
+.movie-genre-container .slick-next:before {
+  font-family: 'slick';
+  font-size: 20px;
+  line-height: 1;
+  opacity: .75;
+  color: #FC2121 !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.movie-genre-container .slick-vertical .slick-slide {
+  width: 171px !important;
+}

@@ -1,0 +1,12 @@
+.movie-trailer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+}
+
+.movie-trailer-container iframe {
+  transform: rotate(90deg) scale(3.2);
+}
