@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_KEY = '2bc9d58fea3bc765e9dd7b1a51de29eb';
 const API_URL = 'https://api.themoviedb.org/3'; // Grundgerüst / Übersichtlichkeit
 
-export default {
+const moviesAPI = {
    // Movies abfrage (popular/trendingMovies)
    getMovies: (page) => {
       return axios.get(`${API_URL}/movie/popular?api_key=${API_KEY}&language=en&page=${page}`);
@@ -28,13 +28,6 @@ export default {
    getMoviesByGenre: (genreId, page) => {
       return axios.get(`${API_URL}/discover/movie?api_key=${API_KEY}&language=en&with_genres=${genreId}&page=${page}`);
    },
-
-   // evenutell Bonus
-   // // Credits abfrage (Movies)
-   // getCredits: (movieId) => {
-   //    return axios.get(`${API_URL}/movie/${movieId}/credits?api_key=${API_KEY}`);
-   // },
-
    // Search abfrage (Movies)
    searchMovies: (query, page) => {
       return axios.get(`${API_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=en&page=${page}`);
@@ -55,5 +48,4 @@ export default {
       }
    },
 };
-
-// Axios ist eine JavaScript-Bibliothek, die es ermöglicht, asynchrone HTTP-Anfragen von einem Browser oder von einer Node.js-Anwendung aus zu senden. Es kann verwendet werden, um Daten von einem Server abzurufen oder dorthin zu senden, und es unterstützt die Verwendung von Promises. In React, kann Axios verwendet werden, um asynchrone Anfragen an einen Server innerhalb von Komponenten-Funktionen durchzuführen.
+export default moviesAPI;
