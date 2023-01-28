@@ -97,7 +97,7 @@ const MovieDetails = () => {
                            <>
                               <p className='movie-details-overview'>
                                  {movie.overview.substring(0, 150)}....
-                                 <a onClick={() => setShowFullOverview(true)}>See more ...</a>
+                                 <button onClick={() => setShowFullOverview(true)}>See more ...</button>
                               </p>
                            </>
                         )}

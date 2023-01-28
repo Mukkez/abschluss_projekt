@@ -23,10 +23,6 @@ const MovieList = () => {
       }
    }, [location.search]);
 
-   useEffect(() => {
-      loadMovies();
-   }, [genreId, searchQuery]);
-
    const loadMovies = async () => {
       let result;
       if (searchQuery) {
@@ -46,6 +42,10 @@ const MovieList = () => {
          setHasMore(false);
       }
    };
+
+   useEffect(() => {
+      loadMovies();
+   }, [genreId, searchQuery]);
 
    // show Genre
    const handleGenreClick = (genreId) => {

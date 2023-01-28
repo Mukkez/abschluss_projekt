@@ -1,24 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import '../styles/pages/SplashScreen.css';
-
-// const SplashScreen = () => {
-//    const navigate = useNavigate();
-//    useEffect(() => {
-//       setTimeout(() => {
-//          navigate('/intro');
-//       }, 3000);
-//    }, []);
-
-//    return (
-//       <div className='splash-screen-container'>
-//          <div className='splash-screen-text'>.MOV</div>
-//       </div>
-//    );
-// };
-
-// export default SplashScreen;
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/pages/SplashScreen.css';
@@ -38,7 +17,7 @@ const SplashScreen = () => {
             return prevProgress + 10;
          });
       }, 500);
-   }, []);
+   }, [navigate]);
 
    return (
       <div className='splash-screen-container'>

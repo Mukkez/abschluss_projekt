@@ -25,7 +25,7 @@ const MovieTrailer = () => {
       <div className='movie-trailer-container'>
          {trailer ? (
             <>
-               <iframe width='360' height='640' src={`https://www.youtube.com/embed/${trailer.key}?autoplay=1&playsinline=1`} frameBorder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowFullScreen></iframe>
+               <iframe title={`Trailer for ${trailer.name}`} width='360' height='640' src={`https://www.youtube.com/embed/${trailer.key}?autoplay=1&playsinline=1`} frameBorder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowFullScreen></iframe>
             </>
          ) : (
             <p>Loading trailer...</p>

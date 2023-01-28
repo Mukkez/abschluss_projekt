@@ -152,6 +152,19 @@
   margin-left: 13px;
 }
 
+.movie-details-overview button {
+  background: none;
+  border: none;
+  color: #FF0000;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
+  cursor: default;
+  padding: 2px 0px 0 11px;
+}
+
 .movie-details-extra-container {
   font-family: 'Poppins';
   font-style: normal;
