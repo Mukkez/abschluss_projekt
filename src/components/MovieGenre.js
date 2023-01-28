@@ -9,7 +9,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const MovieGenre = ({ onGenreClick }) => {
-   const [activeGenre, setActiveGenre] = useState(null);
    const location = useLocation();
 
    const [activeGenreId, setActiveGenreId] = useState(null);
@@ -19,8 +18,7 @@ const MovieGenre = ({ onGenreClick }) => {
    useEffect(() => {
       if (location.pathname === '/genres') {
          const genre = location.search.split('=')[1];
-         setActiveGenre(genre);
-         onGenreClick(genre);
+         setActiveGenreId(genre);
       }
    }, [location]);
 
@@ -39,7 +37,6 @@ const MovieGenre = ({ onGenreClick }) => {
       arrows: true,
       centerMode: true,
       centerPadding: '0px',
-      infinite: true,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -52,9 +49,16 @@ const MovieGenre = ({ onGenreClick }) => {
    return (
       <div className='movie-genre-container'>
          <Slider {...settings}>
-            {genres.map((genre) => (
-               <Link to={{ pathname: '/genres', search: `?id=${genre.id}&name=${genre.name.toLowerCase()}` }}>
-                  <button key={genre.id} className={`btn ${activeGenreId === genre.id ? 'active' : ''}`} onClick={() => setActiveGenreId(genre.id)}>
+            {genres.map((genre, index) => (
+               <Link key={index} to={{ pathname: '/genres', search: `?name=${genre.name.toLowerCase()}` }}>
+                  <button
+                     key={genre.id}
+                     className={`btn ${activeGenreId === genre.id ? 'active' : ''}`}
+                     onClick={() => {
+                        setActiveGenreId(genre.id);
+                        onGenreClick(genre.id);
+                     }}
+                  >
                      {genre.name}
                   </button>
                </Link>

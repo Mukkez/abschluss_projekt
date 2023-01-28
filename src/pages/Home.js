@@ -18,7 +18,12 @@ const Home = () => {
       <div className='home-container'>
          <h1 className='welcome-text'>Welcome!</h1>
          <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleSearch={handleSearch} />
-         <MovieGenre />
+         <MovieGenre
+            onGenreClick={(genreId) => {
+               console.log(genreId);
+            }}
+         />
+
          <div className='trending-movies-container'>
             <p className='trending-movies-heading'>Trending Movies</p>
             <Link to='/genres' className='see-all-link'>

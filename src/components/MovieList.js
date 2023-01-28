@@ -34,9 +34,9 @@ const MovieList = () => {
          setMovies(result.data.results);
          setHasMore(false);
       } else if (genreId) {
-         let modifiedGenreId = genreId.replace('&name', '');
-         result = await defaultApi.getMoviesByGenre(modifiedGenreId, page);
-         setMovies([...movies, ...result.data.results.filter((movie) => movie.genre_ids[0] == modifiedGenreId)]);
+         console.log(genreId);
+         result = await defaultApi.getMoviesByGenre(genreId, page);
+         setMovies([...movies, ...result.data.results.filter((movie) => movie.genre_ids[0] === genreId)]);
       } else {
          result = await defaultApi.getMovies(page);
          setMovies([...movies, ...result.data.results]);
