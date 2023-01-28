@@ -48,7 +48,7 @@ function MovieCarousel() {
             {movies.map((movie) => (
                <div className='movie-carousel-slide' key={movie.id} onClick={() => handleClick(movie.id)}>
                   <div className='movie-carousel-slide-overlay'>
-                     <img src={`https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`} alt={movie.title} />
+                     <img src={`https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`} alt='' />
                      <div className='movie-carousel-slide-text'>
                         <p>{movie.title} </p>
                         <p>

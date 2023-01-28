@@ -15,9 +15,9 @@ const IntroApp = () => {
    return (
       <div className='intro-app-container'>
          <div className='img-container'>
-            <img src={img0} alt='Movie Image 0' />
-            <img src={img1} alt='Movie Image 1' />
-            <img src={img2} alt='Movie Image 2' />
+            <img src={img0} alt='' />
+            <img src={img1} alt='' />
+            <img src={img2} alt='' />
          </div>
          <div className='text-container'>
             <h1 className='intro-app-header'>Enjoy Your Movie Watch Everywhere</h1>
