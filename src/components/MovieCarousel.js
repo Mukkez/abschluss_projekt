@@ -52,7 +52,7 @@ function MovieCarousel() {
                      <div className='movie-carousel-slide-text'>
                         <p>{movie.title} </p>
                         <p>
-                           <img src={polygon} />
+                           <img src={polygon} alt='' />
                            {movie.vote_average} / 10
                         </p>
                      </div>
