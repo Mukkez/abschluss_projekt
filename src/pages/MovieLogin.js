@@ -26,24 +26,23 @@ const MovieLogin = () => {
                <form className='movie-login-form'>
                   <input type='text' placeholder='Username' className='movie-login-input' />
                   <input type='password' placeholder='Password' className='movie-login-input' />
-                  <button className='movie-login-submit-btn'>Senden</button>
+                  <button className='movie-login-submit-btn'>Submit</button>
                </form>
                <p className='movie-login-switch' onClick={() => setIsLogin(false)}>
-                  Noch nicht registriert?
+                  Not registered yet?
                </p>
             </div>
          ) : (
-            // Wenn isLogin false ist, wird der Registrierungs-Teil angezeigt
             <div className='movie-register-box'>
-               <h2 className='movie-register-title'>Registrierung</h2>
+               <h2 className='movie-register-title'>Registration</h2>
                <form className='movie-register-form'>
                   <input type='text' placeholder='Username' className='movie-register-input' />
                   <input type='password' placeholder='Password' className='movie-register-input' />
                   <input type='email' placeholder='E-Mail' className='movie-register-input' />
-                  <button className='movie-register-submit-btn'>Senden</button>
+                  <button className='movie-register-submit-btn'>Submit</button>
                </form>
                <p className='movie-register-switch' onClick={() => setIsLogin(true)}>
-                  Zum Login
+                  To the Login
                </p>
             </div>
          )}

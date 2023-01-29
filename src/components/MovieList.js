@@ -22,17 +22,16 @@ const MovieList = () => {
       if (searchQuery === 'wo ist freddy?') {
          setMovies(myMovieArray);
       } else if (searchQuery) {
-         result = await defaultApi.searchMovies(searchQuery, 1);
+         result = await defaultApi.searchMovies(searchQuery, page);
          setMovies(result.data.results);
          setHasMore(false);
       } else if (genreId) {
-         result = await defaultApi.getMoviesByGenre(genreId, 1);
+         result = await defaultApi.getMoviesByGenre(genreId, page);
          setMovies([...movies, ...result.data.results.filter((movie) => movie.genre_ids[0] === genreId)]);
       } else {
-         result = await defaultApi.getMovies(1);
+         result = await defaultApi.getMovies(page);
          setMovies([...movies, ...result.data.results]);
       }
-
       setPage(page + 1);
       if (result.data.results.length === 0) {
          setHasMore(false);

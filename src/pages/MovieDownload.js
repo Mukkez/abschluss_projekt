@@ -18,8 +18,13 @@ const MovieDownload = () => {
       // Container-Div mit dem Hintergrundbild
       <div className='movie-download-container' style={{ backgroundImage: `url(${movieBackground})` }}>
          <div className='movie-download-box'>
-            <p>Lade Deine Lieblingsfilme herunter und verwalte sie in Deiner persönlichen Filmauswahl</p>
-            <p>Melde Dich jetzt an, um Zugriff zu erhalten.</p>
+            <p>
+               Download your favorite <br />
+               films and manage
+               <br />
+               your filmography
+            </p>
+            <p>Sign up now to get access</p>
             <Link to='/login'>
                <button className='movie-download-login-btn'>Login</button>
             </Link>

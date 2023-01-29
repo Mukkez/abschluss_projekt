@@ -11,42 +11,27 @@ import star from '../assets/img/polygon.png';
 import noimg from '../assets/img/no_img.jpg';
 
 const MovieDetails = () => {
-   // Hole den id-Parameter aus der URL
    const { id } = useParams();
-
-   // State für das Movie-Objekt
    const [movie, setMovie] = useState(null);
-
-   // State für die Anzeige der vollständigen Übersicht
    const [showFullOverview, setShowFullOverview] = useState(false);
-
-   // State für das formatierte Datum der Veröffentlichung
    const [formattedDate, setFormattedDate] = useState('');
 
-   // useEffect Hook für das Laden des Movies
-   // Wird aufgerufen, wenn sich die ID in der URL ändert
    useEffect(() => {
       getMovie(id);
    }, [id]);
 
-   // Funktion, um das Movie anhand der ID zu laden
    const getMovie = async (id) => {
       const result = await defaultApi.getMovieDetails(id);
       setMovie(result.data);
-      console.log(result.data);
+      // console.log(result.data);
    };
 
-   // useEffect Hook für das Setzen des Paddings des Text-Containers
-   // Wird aufgerufen, wenn sich das movie-Objekt ändert
    useEffect(() => {
-      // Wenn das movie-Objekt noch nicht geladen ist, abbrechen
       if (!movie) return;
-      // Hinzufügen von 100px Padding am unteren Rand des Containers
       const textContainer = document.querySelector('.movie-details-text-container');
       textContainer.style.paddingBottom = '100px';
    }, [movie]);
 
-   // useEffect Hook für das Formatieren des Veröffentlichungsdatums
    useEffect(() => {
       if (movie) {
          setTimeout(() => {
@@ -61,34 +46,41 @@ const MovieDetails = () => {
       }
    }, [movie]);
 
+   useEffect(() => {
+      getTrailer(id);
+   });
+
+   const [trailer, setTrailer] = useState(null);
+
+   const getTrailer = async (movie) => {
+      const result = await defaultApi.getMovieTrailer(id);
+      if (result.data.results && result.data.results.length > 0) {
+         setTrailer(result.data.results[0]);
+      }
+   };
+
    return (
       <div className='movie-details-container'>
          {movie ? (
             <>
-               {/* Anzeige des Posters und der Details des Films */}
                <div className='movie-details-text-container'>
                   <div className='movie-poster-container'>
                      <div className='movie-details-container-poster-header'>
-                        {/* Zurück-Button */}
                         <img src={back} alt='Zurück' onClick={() => window.history.back()} className='back-button' />
                         <p>Movie Details</p>
                      </div>
-                     {/* Anzeige des Posters */}
                      {movie.poster_path ? <img className='movie-details-poster' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt='' /> : <img className='movie-details-poster' src={noimg} alt='' />}
                      <div className='movie-details-container-poster-info'>
-                        {/* Anzeige des Titels, Erscheinungsdatums und der Dauer */}
-                        <h1 className='movie-details-title'>{movie.title}</h1>
+                        <h1 className='movie-details-title'>{movie.title ? movie.title : 'N/A'}</h1>
                         <p className='movie-details-year'>{formattedDate ? formattedDate : 'N/A'}</p>
                         <p className='bull'>•</p>
                         <p className='movie-details-duration'>{movie.runtime ? `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m` : 'N/A'}</p>
-                        {/* Anzeige der Bewertung */}
                         <div className='movie-details-rating-container'>
                            <img className='star' src={star} alt='star' />
                            <p className='movie-details-rating'>{movie.vote_average ? `${movie.vote_average.toFixed(1)} / 10` : 'N/A'}</p>
                         </div>
                      </div>
                   </div>
-                  {/* Anzeige der Informationen zum Film */}
                   <div className='movie-details-container-info'>
                      <div className='movie-details-container-info-box'>
                         <h1>Description</h1>
@@ -103,7 +95,6 @@ const MovieDetails = () => {
                            </>
                         )}
                      </div>
-                     {/* Anzeige von Genres, Budget, Einnahmen und Original-Sprache */}
                      <div className='movie-details-extra-container'>
                         <p className='movie-details-genres'>
                            <span>Genres</span>
@@ -124,12 +115,14 @@ const MovieDetails = () => {
                         </p>
                         <p className='movie-details-language'>
                            <span>Original Language</span>
-                           {movie.original_language ? `${movie.spoken_languages[0].english_name}` : 'N/A'}
+                           {movie.spoken_languages.length > 0 ? `${movie.spoken_languages[0].english_name}` : 'N/A'}
                         </p>
                      </div>
-                     <Link to={`/trailer/${movie.id}`}>
-                        <button className='watch-trailer-btn'>Watch Trailer</button>
-                     </Link>
+                     {trailer && (
+                        <Link to={`/trailer/${movie.id}`}>
+                           <button className='watch-trailer-btn'>Watch Trailer</button>
+                        </Link>
+                     )}
                   </div>
                </div>
             </>

@@ -16,8 +16,11 @@ const MovieBookmarks = () => {
    return (
       <div className='movie-bookmarks-container' style={{ backgroundImage: `url(${movieBackground})` }}>
          <div className='movie-bookmarks-box'>
-            <p>Entdecke die Welt Deiner Lieblingsfilme</p>
-            <p>Melde Dich jetzt an, um Deine persönliche Filmauswahl zu verwalten.</p>
+            <p>
+               Discover the world of <br />
+               your favorite films{' '}
+            </p>
+            <p>Manage your filmography.</p>
             <Link to='/login'>
                <button className='movie-bookmarks-login-btn'>Login</button>
             </Link>

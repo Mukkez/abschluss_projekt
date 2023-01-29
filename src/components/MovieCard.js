@@ -19,7 +19,7 @@ const MovieCard = ({ movie }) => {
       if (movie.id) {
          getRuntime();
       }
-   }, [movie]);
+   });
 
    const getGenres = async () => {
       const result = await defaultApi.getGenres();
