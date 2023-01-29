@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import MovieList from '../components/MovieList';
+import Footer from '../components/Footer';
 
 const Genres_Search = () => {
    const [movies] = useState([]);
@@ -7,6 +8,7 @@ const Genres_Search = () => {
    return (
       <div>
          <MovieList movies={movies} />
+         <Footer />
       </div>
    );
 };

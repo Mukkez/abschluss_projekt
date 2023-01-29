@@ -17,10 +17,13 @@ const MovieGenre = ({ onGenreClick }) => {
 
    useEffect(() => {
       if (location.pathname === '/genres') {
-         const genre = location.search.split('=')[1];
-         setActiveGenreId(genre);
+         const genreName = location.search.split('=')[1];
+         const genre = genres.find((g) => g.name.toLowerCase() === genreName);
+         if (genre) {
+            setActiveGenreId(genre.id);
+         }
       }
-   }, [location]);
+   }, [location, genres]);
 
    useEffect(() => {
       async function fetchData() {

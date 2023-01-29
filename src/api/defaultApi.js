@@ -30,7 +30,7 @@ const moviesAPI = {
    },
    // Search abfrage (Movies)
    searchMovies: (query, page) => {
-      return axios.get(`${API_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=en&page=${page}&include_adult=false`);
+      return axios.get(`${API_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=en&page=${page}&include_adult=true`);
       // return axios.get(`${API_URL}/search/multi?api_key=${API_KEY}&language=en-US&query=${page}&page=1&include_adult=false`);
    },
    // Videos abfrage (Movies)
