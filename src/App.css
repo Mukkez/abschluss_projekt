@@ -49,8 +49,8 @@ body {
   transform: translate(-50%, -50%);
   min-width: 429px;
   min-height: 926px;
-  max-width: 668px;
-  max-height: 1018px;
+  max-width: 429px;
+  max-height: 980px;
   border-radius: 50px;
   overflow: auto;
   background: rgb(255, 255, 255);

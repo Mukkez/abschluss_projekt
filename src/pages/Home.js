@@ -27,7 +27,7 @@ const Home = () => {
          <div className='trending-movies-container'>
             <p className='trending-movies-heading'>Trending Movies</p>
             <Link to='/list' className='see-all-link'>
-               See All
+               See all
             </Link>
          </div>
          <MovieCarousel />

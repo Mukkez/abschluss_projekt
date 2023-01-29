@@ -19,16 +19,7 @@ const MovieList = () => {
 
    const loadMovies = useCallback(async () => {
       let result;
-      // if (searchQuery === 'wo ist freddy?' || searchQuery === 'was macht julia?' || searchQuery === 'was ist mit steffen?') {
-      //    const filteredMovies = movieSupercode.map((supercode) => {
-      //       if (supercode.name[0] === 'Freddy' || supercode.name[0] === 'Julia' || supercode.name[0] === 'Steffen') {
-      //          return supercode;
-      //       }
-      //       return [];
-      //    });
-      //    setMovies(filteredMovies);
-      //    console.log(filteredMovies);
-      // }
+
       if (searchQuery === 'wo ist freddy?') {
          const filteredMovies = movieSupercode.filter((supercode) => supercode.name === 'Freddy');
          setMovies(filteredMovies);

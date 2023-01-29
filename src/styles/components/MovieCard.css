@@ -7,8 +7,7 @@
   background-color: #FBF8FF;
   margin: 10px;
   border-radius: 10px;
-  min-width: 420px;
-  max-width: 635px;
+  width: 420px;
 }
 
 .movie-card-poster {
