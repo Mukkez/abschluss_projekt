@@ -6,35 +6,36 @@ const API_URL = 'https://api.themoviedb.org/3'; // Grundgerüst / Übersichtlich
 const moviesAPI = {
    // Movies abfrage (popular/trendingMovies)
    getMovies: (page) => {
-      return axios.get(`${API_URL}/movie/popular?api_key=${API_KEY}&language=en&page=${page}`);
+      return axios.get(`${API_URL}/movie/popular?api_key=${API_KEY}&language=en&page=${page}&include_adult=false`);
    },
    // Movies abfrage (top_rated)
    getAllMovies: (page) => {
-      return axios.get(`${API_URL}/movie/top_rated?api_key=${API_KEY}&language=en&page=${page}`);
+      return axios.get(`${API_URL}/movie/top_rated?api_key=${API_KEY}&language=en&page=${page}&include_adult=false`);
    },
    // MovieDetails abfrage (all)
    getMovieDetails: (movieId) => {
-      return axios.get(`${API_URL}/movie/${movieId}?api_key=${API_KEY}&language=en`);
+      return axios.get(`${API_URL}/movie/${movieId}?api_key=${API_KEY}&language=en&include_adult=false`);
    },
    // Movie abfrage (single)
    getMovie: (movieId) => {
-      return axios.get(`{API_URL}/movie/${movieId}?api_key=${API_KEY}&language=en`);
+      return axios.get(`{API_URL}/movie/${movieId}?api_key=${API_KEY}&language=en&include_adult=false`);
    },
    // Genres abfrage (all)
    getGenres: () => {
-      return axios.get(`${API_URL}/genre/movie/list?api_key=${API_KEY}&language=en`);
+      return axios.get(`${API_URL}/genre/movie/list?api_key=${API_KEY}&language=en&include_adult=false`);
    },
    // Genres abfrage (Movies)
    getMoviesByGenre: (genreId, page) => {
-      return axios.get(`${API_URL}/discover/movie?api_key=${API_KEY}&language=en&with_genres=${genreId}&page=${page}`);
+      return axios.get(`${API_URL}/discover/movie?api_key=${API_KEY}&language=en&with_genres=${genreId}&page=${page}&include_adult=false`);
    },
    // Search abfrage (Movies)
    searchMovies: (query, page) => {
-      return axios.get(`${API_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=en&page=${page}`);
+      return axios.get(`${API_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=en&page=${page}&include_adult=false`);
+      // return axios.get(`${API_URL}/search/multi?api_key=${API_KEY}&language=en-US&query=${page}&page=1&include_adult=false`);
    },
    // Videos abfrage (Movies)
    getMovieTrailer: (movieId) => {
-      return axios.get(`${API_URL}/movie/${movieId}/videos?api_key=${API_KEY}&language=en`);
+      return axios.get(`${API_URL}/movie/${movieId}/videos?api_key=${API_KEY}&language=en&include_adult=false`);
    },
    // Random Movie abfrage (Movies - Popular) - für den Background
    getRandomMovie: async () => {

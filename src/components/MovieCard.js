@@ -6,6 +6,8 @@ import star from '../assets/img/polygon.png';
 import bookmark from '../assets/img/bookmark.png';
 import '../styles/components/MovieCard.css';
 
+import freddy from '../assets/img/freddy.png';
+
 const MovieCard = ({ movie }) => {
    const [genres, setGenres] = useState([]);
    const [runtime, setRuntime] = useState(null);
@@ -17,7 +19,7 @@ const MovieCard = ({ movie }) => {
       if (movie.id) {
          getRuntime();
       }
-   });
+   }, [movie]);
 
    const getGenres = async () => {
       const result = await defaultApi.getGenres();
@@ -38,6 +40,8 @@ const MovieCard = ({ movie }) => {
    let poster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
    if (!movie.poster_path) {
       poster = defaultImage;
+   } else if (movie.poster_path === 'freddy') {
+      poster = freddy;
    }
 
    const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -60,8 +64,6 @@ const MovieCard = ({ movie }) => {
                <img src={poster} alt={movie.title} />
                <button onClick={() => setModalIsOpen(false)}>Close</button>
             </ReactModal>
-            {/* <img className={`movie-card-poster ${posterSize}`} src={poster} alt={movie.title} onClick={handlePosterClick} /> */}
-            {/* <p>ID: {movie.id}</p> */}
          </div>
          <div className='movie-card-container' onClick={handleContainerClick}>
             <div className='movie-card-container-grid'>
@@ -74,19 +76,8 @@ const MovieCard = ({ movie }) => {
                   <img className='bookmark' src={bookmark} alt={movie.title} />
                </div>
                <div className='movie-card-jgt'>
-                  <p>{movie.release_date.substring(0, 4)}</p>
+                  <p>{movie.release_date ? `${movie.release_date.slice(0, 4)}` : 'N/A'}</p>
                   <p className='bull'>&bull;</p>
-                  {/* {genres.length > 0 ? (
-                     <p>
-                        {genres
-                           .filter((genre) => movie.genre_ids.includes(genre.id))
-                           .slice(0, 1)
-                           .map((genre) => genre.name)}
-                     </p>
-                  ) : (
-                     <p>N/A</p>
-                  )} */}
-                  {/* <p>{genreFirst.name}</p> */}
                   {genreFirst && <p>{genreFirst.name}</p>}
 
                   <p className='bull'>&bull;</p>

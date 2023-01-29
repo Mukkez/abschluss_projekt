@@ -17,24 +17,47 @@ const MovieList = () => {
    const location = useLocation();
 
    useEffect(() => {
+      loadMovies();
+   }, [genreId, searchQuery]);
+
+   useEffect(() => {
       const searchValueFromUrl = new URLSearchParams(location.search).get('search');
       if (searchValueFromUrl) {
          setSearchQuery(searchValueFromUrl);
       }
    }, [location.search]);
 
-   useEffect(() => {
-      loadMovies();
-   }, [genreId, searchQuery]);
+   const myMovieArray = [
+      {
+         adult: false,
+         backdrop_path: null,
+         genre_ids: [10751],
+         id: 946584,
+         original_language: 'en',
+         original_title: 'Freddy der Supercoder von Supercode',
+         overview: "Marvel and DC's War on God: The Antichrist Agenda is part 1 in a 7-part series exposing how popular comics, movies, and TV shows are riddled with anti-Christ themes glorifying violence, sexual perversion, blasphemy, and the occult.",
+         popularity: 3.958,
+         poster_path: 'freddy',
+         release_date: '2023-03-04',
+         title: 'Freddy der Supercoder von Supercode',
+         video: false,
+         vote_average: 100,
+         vote_count: 1,
+      },
+   ];
 
    const loadMovies = async () => {
       let result;
-      if (searchQuery) {
+      if (searchQuery === 'wo ist freddy?') {
+         setMovies(myMovieArray);
+         console.log(myMovieArray);
+      } else if (searchQuery) {
+         console.log(searchQuery);
          result = await defaultApi.searchMovies(searchQuery, page);
          setMovies(result.data.results);
+         console.log(result.data.results);
          setHasMore(false);
       } else if (genreId) {
-         console.log(genreId);
          result = await defaultApi.getMoviesByGenre(genreId, page);
          setMovies([...movies, ...result.data.results.filter((movie) => movie.genre_ids[0] === genreId)]);
       } else {
@@ -59,7 +82,9 @@ const MovieList = () => {
    // show More
    const handleLoadMoreClick = async () => {
       if (hasMore) {
+         setPage(page + 1);
          loadMovies();
+         setHasMore(true);
       }
    };
 

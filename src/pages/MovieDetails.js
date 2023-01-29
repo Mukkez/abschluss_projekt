@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 
 import back from '../assets/img/back.png';
 import star from '../assets/img/polygon.png';
+import noimg from '../assets/img/no_img.jpg';
 
 const MovieDetails = () => {
    // Hole den id-Parameter aus der URL
@@ -73,7 +74,7 @@ const MovieDetails = () => {
                         <p>Movie Details</p>
                      </div>
                      {/* Anzeige des Posters */}
-                     <img className='movie-details-poster' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
+                     {movie.poster_path ? <img className='movie-details-poster' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt='' /> : <img className='movie-details-poster' src={noimg} alt='' />}
                      <div className='movie-details-container-poster-info'>
                         {/* Anzeige des Titels, Erscheinungsdatums und der Dauer */}
                         <h1 className='movie-details-title'>{movie.title}</h1>
