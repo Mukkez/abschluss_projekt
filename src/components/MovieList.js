@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
-import { movieSupercode } from './myMovieArray';
+import { movieSupercode } from '../assets/default/defaultArray';
 import defaultApi from '../api/defaultApi';
 import MovieCard from './MovieCard';
 import SearchBar from './MovieSearch';
@@ -20,6 +20,7 @@ const MovieList = () => {
    const loadMovies = useCallback(async () => {
       let result;
 
+      // Hier wird die Suchabfrage überprüft und die Ergebnisse werden gefiltert.
       if (searchQuery === 'wo ist freddy?') {
          const filteredMovies = movieSupercode.filter((supercode) => supercode.name === 'Freddy');
          setMovies(filteredMovies);
@@ -42,6 +43,7 @@ const MovieList = () => {
       } else {
          result = await defaultApi.getMovies(page);
          setMovies([...movies, ...result.data.results]);
+         console.log([...movies, ...result.data.results]);
       }
       setPage(page + 1);
       if (result.data.results.length === 0) {
@@ -49,24 +51,11 @@ const MovieList = () => {
       }
    }, [genreId, searchQuery, page, movies]);
 
+   // Zustand für die Ladeanzeige.
    const [loaded, setLoaded] = useState(false);
-   useEffect(() => {
-      if (!loaded) {
-         loadMovies();
-         setLoaded(true);
-      }
-   }, [loaded, genreId, searchQuery, loadMovies]);
 
-   // Hier wird ein Effect verwendet, um die Suchabfrage aus der URL abzurufen.
-   useEffect(() => {
-      const searchValueFromUrl = new URLSearchParams(location.search).get('search');
-      if (searchValueFromUrl) {
-         setSearchQuery(searchValueFromUrl);
-      }
-   }, [location.search]);
-
-   // Hier wird die Funktion zum Anzeigen eines Genres definiert.
-   const handleGenreClick = (genreId) => {
+   // Anzeigen eines Genres definiert.
+   const handleGenreClick = useCallback((genreId) => {
       setPage(1);
       setMovies([]);
       setHasMore(true);
@@ -74,34 +63,49 @@ const MovieList = () => {
       setGenreId(genreId);
       setActiveGenre(genreId);
       setLoaded(false);
-   };
-   // Hier wird die Funktion zum Anzeigen weiterer Filme definiert.
-   const handleLoadMoreClick = async () => {
+   }, []);
+
+   // Anzeigen weiterer Filme definiert.
+   const handleLoadMoreClick = useCallback(() => {
       if (hasMore) {
          setPage(page + 1);
          loadMovies();
          setHasMore(true);
          setLoaded(false);
       }
-   };
+   }, [hasMore, page, loadMovies]);
 
-   // Hier wird die Funktion zur Suche nach Filmen definiert.
-   const handleSearch = async (searchQuery) => {
+   // Funktion zur Suche nach Filmen definiert.
+   const handleSearch = useCallback((searchQuery) => {
       setPage(1);
       setMovies([]);
       setHasMore(true);
       setSearchQuery(searchQuery);
       setGenreId(null);
       setLoaded(false);
-   };
+   }, []);
 
-   // Hier wird ein Timeout eingerichtet, um die Style-Eigenschaften des "Load More"-Buttons nach 2000ms zu ändern.
+   // Effect verwendet, um die Filme zu laden.
+   useEffect(() => {
+      if (!loaded) {
+         loadMovies();
+         setLoaded(true);
+      }
+   }, [loaded, genreId, searchQuery, loadMovies]);
+
+   // Die Suchabfrage aus der URL abzurufen.
+   useEffect(() => {
+      const searchValueFromUrl = new URLSearchParams(location.search).get('search');
+      if (searchValueFromUrl) {
+         setSearchQuery(searchValueFromUrl);
+      }
+   }, [location.search]);
+
+   // ein Effect verwenden, um die Style-Eigenschaften des "Load More"-Buttons nach 2000ms zu ändern.
    useEffect(() => {
       if (movies.length) {
-         setTimeout(() => {
-            const textContainer = document.querySelector('.load-more-btn');
-            textContainer.style.margin = '40px 0 120px 0';
-         }, 2000);
+         const textContainer = document.querySelector('.load-more-btn');
+         textContainer.style.margin = '40px 0 120px 0';
       }
    }, [movies]);
 
@@ -109,7 +113,6 @@ const MovieList = () => {
       <div className='movielist-contrainer'>
          <SearchBar onSearch={handleSearch} />
          <MovieGenre onGenreClick={handleGenreClick} activeGenre={activeGenre} />
-
          <div className='movie-list'>
             {movies.map((movie) => (
                <div className='movie-card-container' key={movie.id}>
