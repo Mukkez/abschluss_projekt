@@ -19,8 +19,8 @@ function App() {
                <Route exact path='/' element={<SplashScreen />} />
                <Route path='/intro' element={<IntroApp />} />
                <Route path='/home' element={<Home />} />
-               <Route path='/genres' element={<GenresSearch />} />
-               <Route path='/movies/:id' element={<MovieDetails />} />
+               <Route path='/list' element={<GenresSearch />} />
+               <Route path='/list/movie/:id' element={<MovieDetails />} />
                <Route path='/trailer/:id' element={<MovieTrailer />} />
                <Route path='/bookmarks' element={<MovieBookmarks />} />
                <Route path='/login' element={<MovieLogin />} />

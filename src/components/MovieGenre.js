@@ -16,7 +16,7 @@ const MovieGenre = ({ onGenreClick }) => {
    const [genres, setGenres] = useState([]);
 
    useEffect(() => {
-      if (location.pathname === '/genres') {
+      if (location.pathname === '/list') {
          const genreName = location.search.split('=')[1];
          const genre = genres.find((g) => g.name.toLowerCase() === genreName);
          if (genre) {

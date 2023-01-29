@@ -51,7 +51,7 @@ const MovieCard = ({ movie }) => {
    };
 
    const handleContainerClick = () => {
-      window.location.href = `/movies/${movie.id}`;
+      window.location.href = `/list/movie/${movie.id}`;
    };
 
    const genreFirst = genres.find((genre) => genre.id === movie.genre_ids[0]);
