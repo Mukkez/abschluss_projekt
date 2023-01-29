@@ -10,6 +10,8 @@ import julia from '../assets/img/julia.png';
 import freddy from '../assets/img/freddy.png';
 import steffen from '../assets/img/steffen.jpg';
 
+import { Link } from 'react-router-dom';
+
 const MovieCard = ({ movie }) => {
    const [genres, setGenres] = useState([]);
    const [runtime, setRuntime] = useState(null);
@@ -60,10 +62,6 @@ const MovieCard = ({ movie }) => {
       setModalIsOpen(true);
    };
 
-   const handleContainerClick = () => {
-      window.location.href = `/list/movie/${movie.id}`;
-   };
-
    const genreFirst = genres.find((genre) => genre.id === movie.genre_ids[0]);
 
    return (
@@ -75,25 +73,27 @@ const MovieCard = ({ movie }) => {
                <button onClick={() => setModalIsOpen(false)}>Close</button>
             </ReactModal>
          </div>
-         <div className='movie-card-container' onClick={handleContainerClick}>
-            <div className='movie-card-container-grid'>
-               <div className='movie-card-titel'>
-                  <p>{movie.title}</p>
-               </div>
-               <div className='movie-card-text'>
-                  <img className='star' src={star} alt='star' />
-                  <p>{movie.vote_average}</p>
-                  <img className='bookmark' src={bookmark} alt={movie.title} />
-               </div>
-               <div className='movie-card-jgt'>
-                  <p>{movie.release_date ? `${movie.release_date.slice(0, 4)}` : 'N/A'}</p>
-                  <p className='bull'>&bull;</p>
-                  {genreFirst && <p>{genreFirst.name}</p>}
+         <div className='movie-card-container'>
+            <Link className='movie-card-link' to={`/list/movie/${movie.id}`}>
+               <div className='movie-card-container-grid'>
+                  <div className='movie-card-titel'>
+                     <p>{movie.title}</p>
+                  </div>
+                  <div className='movie-card-text'>
+                     <img className='star' src={star} alt='star' />
+                     <p>{movie.vote_average}</p>
+                     <img className='bookmark' src={bookmark} alt={movie.title} />
+                  </div>
+                  <div className='movie-card-jgt'>
+                     <p>{movie.release_date ? `${movie.release_date.slice(0, 4)}` : 'N/A'}</p>
+                     <p className='bull'>&bull;</p>
+                     {genreFirst && <p>{genreFirst.name}</p>}
 
-                  <p className='bull'>&bull;</p>
-                  <p>{runtime}</p>
+                     <p className='bull'>&bull;</p>
+                     <p>{runtime}</p>
+                  </div>
                </div>
-            </div>
+            </Link>
          </div>
       </div>
    );

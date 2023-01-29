@@ -21,6 +21,11 @@
   grid-area: 1 / 2 / 2 / 8;
 }
 
+.movie-card-link {
+  color: #000000;
+  text-decoration: none;
+}
+
 .movie-card-container-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -28,6 +33,8 @@
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 }
+
+
 
 .movie-card-titel {
   grid-area: 1 / 1 / 2 / 6;
