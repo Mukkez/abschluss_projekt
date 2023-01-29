@@ -220,6 +220,14 @@
   line-height: 32px;
 }
 
+.movie-details-loading {
+  font-size: 30px;
+  color: #FC2121;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+}
+
 .back-button {
   width: 50px;
   height: 50px;

@@ -53,7 +53,7 @@ const MovieGenre = ({ onGenreClick }) => {
       <div className='movie-genre-container'>
          <Slider {...settings}>
             {genres.map((genre, index) => (
-               <Link key={index} to={{ pathname: '/genres', search: `?name=${genre.name.toLowerCase()}` }}>
+               <Link key={index} to={{ pathname: '/list', search: `?genre=${genre.name.toLowerCase()}` }}>
                   <button
                      key={genre.id}
                      className={`btn ${activeGenreId === genre.id ? 'active' : ''}`}

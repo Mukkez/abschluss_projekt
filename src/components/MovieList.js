@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
-import { myMovieArray } from './myMovieArray';
+import { movieSupercode } from './myMovieArray';
 import defaultApi from '../api/defaultApi';
 import MovieCard from './MovieCard';
 import SearchBar from './MovieSearch';
@@ -19,8 +19,28 @@ const MovieList = () => {
 
    const loadMovies = useCallback(async () => {
       let result;
+      // if (searchQuery === 'wo ist freddy?' || searchQuery === 'was macht julia?' || searchQuery === 'was ist mit steffen?') {
+      //    const filteredMovies = movieSupercode.map((supercode) => {
+      //       if (supercode.name[0] === 'Freddy' || supercode.name[0] === 'Julia' || supercode.name[0] === 'Steffen') {
+      //          return supercode;
+      //       }
+      //       return [];
+      //    });
+      //    setMovies(filteredMovies);
+      //    console.log(filteredMovies);
+      // }
       if (searchQuery === 'wo ist freddy?') {
-         setMovies(myMovieArray);
+         const filteredMovies = movieSupercode.filter((supercode) => supercode.name === 'Freddy');
+         setMovies(filteredMovies);
+         console.log(filteredMovies);
+      } else if (searchQuery === 'was macht julia?') {
+         const filteredMovies = movieSupercode.filter((supercode) => supercode.name === 'Julia');
+         setMovies(filteredMovies);
+         console.log(filteredMovies);
+      } else if (searchQuery === 'was ist mit steffen?') {
+         const filteredMovies = movieSupercode.filter((supercode) => supercode.name === 'Steffen');
+         setMovies(filteredMovies);
+         console.log(filteredMovies);
       } else if (searchQuery) {
          result = await defaultApi.searchMovies(searchQuery, page);
          setMovies(result.data.results);

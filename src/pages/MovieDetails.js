@@ -119,7 +119,7 @@ const MovieDetails = () => {
                         </p>
                      </div>
                      {trailer && (
-                        <Link to={`/trailer/${movie.id}`}>
+                        <Link to={`/list/movie/${movie.id}/trailer/watch?v=${movie.id}`}>
                            <button className='watch-trailer-btn'>Watch Trailer</button>
                         </Link>
                      )}
@@ -127,7 +127,7 @@ const MovieDetails = () => {
                </div>
             </>
          ) : (
-            <p>Loading movie details...</p>
+            <p className='movie-details-loading'>Loading movie details...</p>
          )}
          <Footer />
       </div>

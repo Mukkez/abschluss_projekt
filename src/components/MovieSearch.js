@@ -8,7 +8,7 @@ const SearchBar = ({ onSearch }) => {
 
    const handleSubmit = (event) => {
       event.preventDefault();
-      navigate(`/genres?search=${encodeURIComponent(searchValue)}`);
+      navigate(`/list?search=${encodeURIComponent(searchValue)}`);
       onSearch(searchValue);
    };
 

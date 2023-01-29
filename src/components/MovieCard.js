@@ -6,7 +6,9 @@ import star from '../assets/img/polygon.png';
 import bookmark from '../assets/img/bookmark.png';
 import '../styles/components/MovieCard.css';
 
+import julia from '../assets/img/julia.png';
 import freddy from '../assets/img/freddy.png';
+import steffen from '../assets/img/steffen.jpg';
 
 const MovieCard = ({ movie }) => {
    const [genres, setGenres] = useState([]);
@@ -27,8 +29,12 @@ const MovieCard = ({ movie }) => {
    };
 
    const getRuntime = async () => {
-      const result = await defaultApi.getMovieDetails(movie.id);
-      setRuntime(convertRuntime(result.data.runtime));
+      if (movie.name === 'Julia' || movie.name === 'Freddy' || movie.name === 'Steffen') {
+         setRuntime(convertRuntime(movie.runtime));
+      } else {
+         const result = await defaultApi.getMovieDetails(movie.id);
+         setRuntime(convertRuntime(result.data.runtime));
+      }
    };
 
    const convertRuntime = (minutes) => {
@@ -40,8 +46,12 @@ const MovieCard = ({ movie }) => {
    let poster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
    if (!movie.poster_path) {
       poster = defaultImage;
+   } else if (movie.poster_path === 'julia') {
+      poster = julia;
    } else if (movie.poster_path === 'freddy') {
       poster = freddy;
+   } else if (movie.poster_path === 'steffen') {
+      poster = steffen;
    }
 
    const [modalIsOpen, setModalIsOpen] = useState(false);

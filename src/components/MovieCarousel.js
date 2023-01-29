@@ -38,7 +38,7 @@ function MovieCarousel() {
    };
    // opens movie
    const handleClick = (movieId) => {
-      navigate(`/movies/${movieId}`);
+      navigate(`/list/movie/${movieId}`);
    };
 
    //continue
