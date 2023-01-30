@@ -2,11 +2,21 @@
   background: #fff;
   width: 100vw;
   height: 100vh;
-  /* display: flex;
+  overflow: auto;
+  max-height: 990px;
+  max-width: 429px;
+}
+
+.no-result {
+  display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column; */
-  overflow: auto;
+  flex-direction: column;
+  margin-top: 60px;
+}
+
+.no-result img {
+  width: 80%;
 }
 
 .movie-list {

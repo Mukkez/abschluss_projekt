@@ -11,18 +11,19 @@ function MovieCarousel() {
    const [movies, setMovies] = useState([]);
    const navigate = useNavigate();
 
+   //API Call für die Filme im Carousel (Top 5) - wird nur einmal ausgeführt
    useEffect(() => {
       defaultApi
          .getMovies(1)
          .then((response) => {
             setMovies(response.data.results.slice(0, 5));
-            //console.log(response.data.results.slice(0, 5));
          })
          .catch((error) => {
             console.log(error);
          });
    }, []);
 
+   //Slick Slider Einstellungen
    const settings = {
       dots: true,
       infinite: true,
@@ -36,12 +37,11 @@ function MovieCarousel() {
       centerMode: true,
       centerPadding: '0px',
    };
-   // opens movie
+
    const handleClick = (movieId) => {
       navigate(`/list/movie/${movieId}`);
    };
 
-   //continue
    return (
       <div className='movie-carousel-container'>
          <Slider {...settings}>

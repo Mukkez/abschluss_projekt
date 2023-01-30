@@ -6,6 +6,7 @@ import MovieCard from './MovieCard';
 import SearchBar from './MovieSearch';
 import MovieGenre from './MovieGenre';
 import '../styles/components/MovieList.css';
+import noResult from '../assets/img/no-result.png';
 
 // Hier wird eine Funktion erstellt, die den MovieList-Abschnitt darstellt.
 const MovieList = () => {
@@ -98,6 +99,7 @@ const MovieList = () => {
       const searchValueFromUrl = new URLSearchParams(location.search).get('search');
       if (searchValueFromUrl) {
          setSearchQuery(searchValueFromUrl);
+         console.log(searchValueFromUrl);
       }
    }, [location.search]);
 
@@ -113,18 +115,26 @@ const MovieList = () => {
       <div className='movielist-contrainer'>
          <SearchBar onSearch={handleSearch} />
          <MovieGenre onGenreClick={handleGenreClick} activeGenre={activeGenre} />
-         <div className='movie-list'>
-            {movies.map((movie) => (
-               <div className='movie-card-container' key={movie.id}>
-                  <MovieCard movie={movie} />
+         {movies.length === 0 ? (
+            <div className='no-result'>
+               <img src={noResult} alt='' />
+            </div>
+         ) : (
+            <>
+               <div className='movie-list'>
+                  {movies.map((movie) => (
+                     <div className='movie-card-container' key={movie.id}>
+                        <MovieCard movie={movie} />
+                     </div>
+                  ))}
                </div>
-            ))}
-         </div>
-         <div className='load-more-btn-container'>
-            <button className='load-more-btn' onClick={handleLoadMoreClick}>
-               Load More
-            </button>
-         </div>
+               <div className='load-more-btn-container'>
+                  <button className='load-more-btn' onClick={handleLoadMoreClick}>
+                     Load More
+                  </button>
+               </div>
+            </>
+         )}
       </div>
    );
 };

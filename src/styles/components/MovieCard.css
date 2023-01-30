@@ -95,8 +95,7 @@
   overflow: auto;
   margin: 0 auto;
   border-radius: 35px;
-  min-width: 428px;
-  max-width: 635px;
+  max-width: 428px;
 }
 
 .ReactModal__Overlay,

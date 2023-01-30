@@ -10,11 +10,19 @@ import 'slick-carousel/slick/slick-theme.css';
 
 const MovieGenre = ({ onGenreClick }) => {
    const location = useLocation();
-
    const [activeGenreId, setActiveGenreId] = useState(null);
-
    const [genres, setGenres] = useState([]);
 
+   //Hole die Genres von der API
+   useEffect(() => {
+      async function fetchData() {
+         const response = await defaultApi.getGenres();
+         setGenres(response.data.genres);
+      }
+      fetchData();
+   }, []);
+
+   //Setze activeGenreId basierend auf der URL
    useEffect(() => {
       if (location.pathname === '/list') {
          const genreName = location.search.split('=')[1];
@@ -25,14 +33,7 @@ const MovieGenre = ({ onGenreClick }) => {
       }
    }, [location, genres]);
 
-   useEffect(() => {
-      async function fetchData() {
-         const response = await defaultApi.getGenres();
-         setGenres(response.data.genres);
-      }
-      fetchData();
-   }, []);
-
+   //Slick Slider Einstellungen
    const settings = {
       dots: false,
       infinite: true,

@@ -13,23 +13,13 @@ import steffen from '../assets/img/steffen.jpg';
 import { Link } from 'react-router-dom';
 
 const MovieCard = ({ movie }) => {
-   const [genres, setGenres] = useState([]);
-   const [runtime, setRuntime] = useState(null);
-
-   useEffect(() => {
-      if (movie.genre_ids.length > 0) {
-         getGenres();
-      }
-      if (movie.id) {
-         getRuntime();
-      }
-   });
-
+   // Funktion um Genres von der API zu holen
    const getGenres = async () => {
       const result = await defaultApi.getGenres();
       setGenres(result.data.genres);
    };
 
+   // Funktion um Laufzeit von der API zu holen
    const getRuntime = async () => {
       if (movie.name === 'Julia' || movie.name === 'Freddy' || movie.name === 'Steffen') {
          setRuntime(convertRuntime(movie.runtime));
@@ -39,12 +29,28 @@ const MovieCard = ({ movie }) => {
       }
    };
 
+   // Funktion um Minuten in Stunden und Minuten umzuwandeln
    const convertRuntime = (minutes) => {
       const hours = Math.floor(minutes / 60);
       const remainingMinutes = minutes % 60;
       return `${hours}h ${remainingMinutes}min`;
    };
 
+   // State für Genres und Laufzeit
+   const [genres, setGenres] = useState([]);
+   const [runtime, setRuntime] = useState(null);
+
+   // useEffect um die beiden obigen Funktionen beim Laden der Komponente aufzurufen
+   useEffect(() => {
+      if (movie.genre_ids.length > 0) {
+         getGenres();
+      }
+      if (movie.id) {
+         getRuntime();
+      }
+   });
+
+   // falls kein Poster vorhanden ist, wird Default Bild geladen
    let poster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
    if (!movie.poster_path) {
       poster = defaultImage;
@@ -56,12 +62,15 @@ const MovieCard = ({ movie }) => {
       poster = steffen;
    }
 
+   // State für Modal
    const [modalIsOpen, setModalIsOpen] = useState(false);
 
+   // Funktion um Modal zu öffnen
    const handlePosterClick = () => {
       setModalIsOpen(true);
    };
 
+   // erstes Genre des Films
    const genreFirst = genres.find((genre) => genre.id === movie.genre_ids[0]);
 
    return (

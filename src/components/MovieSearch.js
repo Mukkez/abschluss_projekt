@@ -6,6 +6,7 @@ const SearchBar = ({ onSearch }) => {
    const [searchValue, setSearchValue] = useState('');
    const navigate = useNavigate();
 
+   //searchValue wird in die URL geschrieben und die Suche wird ausgeführt (onSearch) - wird bei jedem Tastendruck ausgeführt
    const handleSubmit = (event) => {
       event.preventDefault();
       navigate(`/list?search=${encodeURIComponent(searchValue)}`);
