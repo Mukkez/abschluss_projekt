@@ -13,22 +13,22 @@ import steffen from '../assets/img/steffen.jpg';
 import { Link } from 'react-router-dom';
 
 const MovieCard = ({ movie }) => {
-   // Funktion um Minuten in Stunden und Minuten umzuwandeln
-   const convertRuntime = (minutes) => {
-      const hours = Math.floor(minutes / 60);
-      const remainingMinutes = minutes % 60;
-      return `${hours}h ${remainingMinutes}min`;
-   };
-
    // State für Genres und Laufzeit
    const [genres, setGenres] = useState([]);
-   const [runtime, setRuntime] = useState(null);
+   const [runtime, setRuntime] = useState([]);
 
    // Funktion um Genres von der API zu holen
    const fetchGenres = async () => {
       const result = await defaultApi.getGenres();
       setGenres(result.data.genres);
    };
+
+   // useEffect um die beiden obigen Funktionen beim Laden der Komponente aufzurufen
+   useEffect(() => {
+      if (movie.id) {
+         fetchGenres();
+      }
+   }, [movie.id]);
 
    // Funktion um Filmeänge von der API zu holen + Julia, Freddy und Steffen zusatzlich
    const fetchRuntime = async () => {
@@ -39,14 +39,14 @@ const MovieCard = ({ movie }) => {
          setRuntime(convertRuntime(result.data.runtime));
       }
    };
+   fetchRuntime();
 
-   // useEffect um die beiden obigen Funktionen beim Laden der Komponente aufzurufen
-   useEffect(() => {
-      if (movie.id) {
-         fetchGenres();
-         fetchRuntime();
-      }
-   }, [movie.id]);
+   // Funktion um Minuten in Stunden und Minuten umzuwandeln
+   const convertRuntime = (minutes) => {
+      const hours = Math.floor(minutes / 60);
+      const remainingMinutes = minutes % 60;
+      return `${hours}h ${remainingMinutes}min`;
+   };
 
    // falls kein Poster vorhanden ist, wird Default Bild geladen + Julia, Freddy und Steffen zusatzlich und defaultImage
    let poster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;

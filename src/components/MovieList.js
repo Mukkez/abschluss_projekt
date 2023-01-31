@@ -8,33 +8,18 @@ import noResult from '../assets/img/no-result.png';
 
 const MovieList = () => {
    const [movies, setMovies] = useState([]);
-   const [page, setPage] = useState(parseInt(localStorage.getItem('page')) || 1);
+   const [page, setPage] = useState(1);
    const location = useLocation();
    const [totalPages, setTotalPages] = useState(0);
+   const [hasMore, setHasMore] = useState(true);
 
-   useEffect(() => {
-      localStorage.setItem('page', page);
-   }, [page]);
-
-   useEffect(() => {
-      if (location.pathname === '/home' || location.pathname.startsWith('/list')) {
-         setPage(1);
-      }
-   }, [location]);
-
-   //Lädt die Filme bei Seitenaufruf (Standart Liste Populär)
+   //Lädt die Filme bei Seitenaufruf
    const loadMovies = useCallback(async () => {
       const result = await defaultApi.getMoviesPopular(page);
-      setMovies(result.data.results);
+      setMovies([...movies, ...result.data.results]);
       setTotalPages(result.data.total_pages);
-   }, [page]);
-
-   // Suchanfrage standard an die API von TMDB
-   // const searchMovies = useCallback(async () => {
-   //    const query = new URLSearchParams(location.search).get('search');
-   //    const result = await defaultApi.searchMovies(query, page);
-   //    setMovies(result.data.results);
-   // }, [location.search, page]);
+      setHasMore(false);
+   }, [page, movies]);
 
    // Suchanfrage Suchanfrage standard an die API von TMDB und als zusätzliche Suchanfrage nach Supercode
    const searchMovies = useCallback(async () => {
@@ -76,15 +61,18 @@ const MovieList = () => {
          searchMovies();
       } else if (genre) {
          loadMoviesByGenre();
-      } else {
+      } else if (hasMore) {
+         setHasMore(true);
          loadMovies();
       }
-   }, [searchMovies, loadMovies, loadMoviesByGenre, location.search, page]);
+   }, [hasMore, searchMovies, loadMovies, loadMoviesByGenre, location.search, page]);
 
    const handleLoadMoreClick = () => {
       setPage(page + 1);
-      document.querySelector('.movie-list-page').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setHasMore(true);
    };
+
+   // document.querySelector('.movie-list-page').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
    return (
       <div className='movielist-container'>
@@ -103,7 +91,6 @@ const MovieList = () => {
                         <MovieCard movie={movie} />
                      </div>
                   ))}
-
                   <div className='load-more-btn-container'>
                      <button className='load-more-btn' onClick={handleLoadMoreClick}>
                         Load More
