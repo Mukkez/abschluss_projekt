@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -19,15 +19,17 @@ import Footer from '../components/Footer';
 const MovieDetails = () => {
    let navigate = useNavigate();
 
-   // Übernahme der ID aus den URL-Parametern
+   // Übernahme der ID aus den URL-Parametern (siehe App.js)
    const { id } = useParams();
 
-   // Zustand für den Film
+   // Zustand für den Film mit der angeforderten ID
    const [movie, setMovie] = useState(null);
    // Zustand für den angezeigten Überblick
    const [showFullOverview, setShowFullOverview] = useState(false);
    // Zustand für das formatierte Veröffentlichungsdatum
    const [formattedDate, setFormattedDate] = useState('');
+   // Zustand für den Trailer
+   const [trailer, setTrailer] = useState(null);
 
    // Effekt zur Anforderung des Films bei Änderung der ID
    useEffect(() => {
@@ -38,10 +40,13 @@ const MovieDetails = () => {
    const getMovie = async (id) => {
       // Überprüfung, ob einer der hardcodierten Filme verwendet werden soll
       if (id === '55599555') {
+         // Julia
          setMovie(movieSupercode2[0]);
       } else if (id === '55588555') {
+         // Freddy
          setMovie(movieSupercode2[1]);
       } else if (id === '55577555') {
+         // Steffen
          setMovie(movieSupercode2[2]);
          // Anfrage bei der API für alle anderen IDs
       } else {
@@ -72,21 +77,30 @@ const MovieDetails = () => {
       }
    }, [movie]);
 
-   // Effekt zur Anforderung des Trailers
+   // Funktion/Effekt zur Anforderung des Trailers
    useEffect(() => {
+      const getTrailer = async (movie) => {
+         const result = await defaultApi.getMovieTrailer(id);
+         if (result.data.results && result.data.results.length > 0) {
+            setTrailer(result.data.results[0]);
+         }
+      };
       getTrailer(id);
-   });
+   }, [id]);
 
-   // Zustand für den Trailer
-   const [trailer, setTrailer] = useState(null);
+   // Hier wird die URL überprüft und wenn die URL den Trailer enthält, wird der Trailer gedreht
+   const location = useLocation();
 
-   // Funktion zur Anforderung des Trailers
-   const getTrailer = async (movie) => {
-      const result = await defaultApi.getMovieTrailer(id);
-      if (result.data.results && result.data.results.length > 0) {
-         setTrailer(result.data.results[0]);
+   useEffect(() => {
+      const url = location.pathname;
+      const iframe = document.querySelector('.container');
+
+      if (url.includes('/list/movie/')) {
+         iframe.classList.add('rotate-back');
+         iframe.classList.remove('rotate');
       }
-   };
+   }, [location]);
+
    // Funktion zur Auswahl des Posters
    const choosePoster = ({ movie }) => {
       // lokale Variable zur Speicherung des Posters
@@ -95,18 +109,20 @@ const MovieDetails = () => {
       // Überprüfung der ID des Filmes
       // und Setzen des Posters auf Basis der ID
       if (id === '55599555') {
+         // Julia
          poster = <img className='movie-details-poster' src={julia} alt='' />;
       } else if (id === '55588555') {
+         // Freddy
          poster = <img className='movie-details-poster' src={freddy} alt='' />;
       } else if (id === '55577555') {
+         // Steffen
          poster = <img className='movie-details-poster' src={steffen} alt='' />;
       } else {
          // Überprüfung ob es einen poster_path gibt
          // falls ja, wird das Poster aus der API geladen
-         // falls nein, wird ein Platzhalterbild verwendet
+         // falls nein, wird ein Platzhalterbild verwendet (noimg) - siehe assets/img/no_img.jpg
          poster = movie.poster_path ? <img className='movie-details-poster' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt='' /> : <img className='movie-details-poster' src={noimg} alt='' />;
       }
-
       // Rückgabe des Posters
       return poster;
    };

@@ -1,10 +1,6 @@
-.movielist-contrainer {
-  background: #fff;
-  width: 100vw;
-  height: 100vh;
+.movielist-container {
+  height: 700px;
   overflow: auto;
-  max-height: 990px;
-  max-width: 429px;
 }
 
 .no-result {
@@ -26,7 +22,10 @@
   flex-direction: column;
 }
 
-
+.movie-list-page {
+  font-size: 14px;
+  font-family: 'poppins', sans-serif;
+}
 
 .load-more-btn-container {
   display: flex;

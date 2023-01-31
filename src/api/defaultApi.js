@@ -5,7 +5,7 @@ const API_URL = 'https://api.themoviedb.org/3'; // Grundgerüst / Übersichtlich
 
 const moviesAPI = {
    // Movies abfrage (popular/trendingMovies)
-   getMovies: (page) => {
+   getMoviesPopular: (page) => {
       return axios.get(`${API_URL}/movie/popular?api_key=${API_KEY}&language=en&page=${page}&include_adult=false`);
    },
    // Movies abfrage (top_rated)

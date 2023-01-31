@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
+
+import SearchBar from '../components/MovieSearch';
+import MovieGenre from '../components/MovieGenre';
 import MovieList from '../components/MovieList';
 import Footer from '../components/Footer';
+import '../styles/pages/GenresSearch.css';
 
 const Genres_Search = () => {
    const [movies] = useState([]);
 
    return (
-      <div>
+      <div className='genresSerach-contrainer'>
+         <SearchBar />
+         <MovieGenre />
          <MovieList movies={movies} />
          <Footer />
       </div>

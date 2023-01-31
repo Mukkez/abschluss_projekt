@@ -13,22 +13,6 @@ import steffen from '../assets/img/steffen.jpg';
 import { Link } from 'react-router-dom';
 
 const MovieCard = ({ movie }) => {
-   // Funktion um Genres von der API zu holen
-   const getGenres = async () => {
-      const result = await defaultApi.getGenres();
-      setGenres(result.data.genres);
-   };
-
-   // Funktion um Laufzeit von der API zu holen
-   const getRuntime = async () => {
-      if (movie.name === 'Julia' || movie.name === 'Freddy' || movie.name === 'Steffen') {
-         setRuntime(convertRuntime(movie.runtime));
-      } else {
-         const result = await defaultApi.getMovieDetails(movie.id);
-         setRuntime(convertRuntime(result.data.runtime));
-      }
-   };
-
    // Funktion um Minuten in Stunden und Minuten umzuwandeln
    const convertRuntime = (minutes) => {
       const hours = Math.floor(minutes / 60);
@@ -40,17 +24,31 @@ const MovieCard = ({ movie }) => {
    const [genres, setGenres] = useState([]);
    const [runtime, setRuntime] = useState(null);
 
+   // Funktion um Genres von der API zu holen
+   const fetchGenres = async () => {
+      const result = await defaultApi.getGenres();
+      setGenres(result.data.genres);
+   };
+
+   // Funktion um Filmeänge von der API zu holen + Julia, Freddy und Steffen zusatzlich
+   const fetchRuntime = async () => {
+      if (movie.name === 'Julia' || movie.name === 'Freddy' || movie.name === 'Steffen') {
+         setRuntime(convertRuntime(movie.runtime));
+      } else {
+         const result = await defaultApi.getMovieDetails(movie.id);
+         setRuntime(convertRuntime(result.data.runtime));
+      }
+   };
+
    // useEffect um die beiden obigen Funktionen beim Laden der Komponente aufzurufen
    useEffect(() => {
-      if (movie.genre_ids.length > 0) {
-         getGenres();
-      }
       if (movie.id) {
-         getRuntime();
+         fetchGenres();
+         fetchRuntime();
       }
-   });
+   }, [movie.id]);
 
-   // falls kein Poster vorhanden ist, wird Default Bild geladen
+   // falls kein Poster vorhanden ist, wird Default Bild geladen + Julia, Freddy und Steffen zusatzlich und defaultImage
    let poster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
    if (!movie.poster_path) {
       poster = defaultImage;
@@ -62,15 +60,15 @@ const MovieCard = ({ movie }) => {
       poster = steffen;
    }
 
-   // State für Modal
+   // State für Modal popup von Poster
    const [modalIsOpen, setModalIsOpen] = useState(false);
 
-   // Funktion um Modal zu öffnen
+   // Funktion um Modal zu öffnen und zu schließen - Poster
    const handlePosterClick = () => {
       setModalIsOpen(true);
    };
 
-   // erstes Genre des Films
+   // erstes Genre des Films, filter ob es das Genre gibt und dann das erste Genre damit der Genrefilter richtig funktioniert
    const genreFirst = genres.find((genre) => genre.id === movie.genre_ids[0]);
 
    return (

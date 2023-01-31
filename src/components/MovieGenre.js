@@ -8,12 +8,12 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const MovieGenre = ({ onGenreClick }) => {
+const MovieGenre = () => {
    const location = useLocation();
    const [activeGenreId, setActiveGenreId] = useState(null);
    const [genres, setGenres] = useState([]);
 
-   //Hole die Genres von der API
+   //Hole die Genres von der API und speichere sie in den State
    useEffect(() => {
       async function fetchData() {
          const response = await defaultApi.getGenres();
@@ -22,7 +22,7 @@ const MovieGenre = ({ onGenreClick }) => {
       fetchData();
    }, []);
 
-   //Setze activeGenreId basierend auf der URL
+   //Setze activeGenreId basierend auf der URL (/list?genre=action)
    useEffect(() => {
       if (location.pathname === '/list') {
          const genreName = location.search.split('=')[1];
@@ -60,7 +60,6 @@ const MovieGenre = ({ onGenreClick }) => {
                      className={`btn ${activeGenreId === genre.id ? 'active' : ''}`}
                      onClick={() => {
                         setActiveGenreId(genre.id);
-                        onGenreClick(genre.id);
                      }}
                   >
                      {genre.name}

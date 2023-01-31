@@ -10,7 +10,6 @@ const MovieBookmarks = () => {
    useEffect(() => {
       defaultApi.getRandomMovie().then((url) => {
          setMovieBackground(url);
-         //console.log(url);
       });
    }, []);
    return (

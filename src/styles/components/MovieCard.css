@@ -85,17 +85,24 @@
 }
 
 .modal {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  background-color: white;
-  width: 95%;
-  height: 99%;
-  overflow: auto;
+  width: 64%;
+  height: 98%;
   margin: 0 auto;
-  border-radius: 35px;
-  max-width: 428px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 429px;
+  min-height: 926px;
+  max-width: 429px;
+  max-height: 980px;
+  border-radius: 50px;
+  overflow: auto;
+  background: rgb(255, 255, 255);
 }
 
 .ReactModal__Overlay,

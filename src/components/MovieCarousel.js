@@ -14,7 +14,7 @@ function MovieCarousel() {
    //API Call für die Filme im Carousel (Top 5) - wird nur einmal ausgeführt
    useEffect(() => {
       defaultApi
-         .getMovies(1)
+         .getMoviesPopular(1)
          .then((response) => {
             setMovies(response.data.results.slice(0, 5));
          })

@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/components/MovieSearch.css';
 
 const SearchBar = ({ onSearch }) => {
-   const [searchValue, setSearchValue] = useState('');
+   const [searchValue, setSearchValue] = useState(''); //searchValue wird in die URL geschrieben und die Suche wird ausgeführt (onSearch)
    const navigate = useNavigate();
 
-   //searchValue wird in die URL geschrieben und die Suche wird ausgeführt (onSearch) - wird bei jedem Tastendruck ausgeführt
+   //searchValue wird in die URL geschrieben und die Suche wird ausgeführt (onSearch) - wird bei jedem Enderdruck ausgeführt
    const handleSubmit = (event) => {
       event.preventDefault();
       navigate(`/list?search=${encodeURIComponent(searchValue)}`);

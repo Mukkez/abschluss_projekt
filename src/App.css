@@ -55,3 +55,15 @@ body {
   overflow: auto;
   background: rgb(255, 255, 255);
 }
+
+.rotate {
+  transform: rotate(270deg) !important;
+  transition: 1s ease-in-out !important;
+  position: absolute !important;
+  top: 50px !important;
+  left: 700px !important;
+}
+
+.rotate-back {
+  transition: 1s ease-in-out !important;
+}
