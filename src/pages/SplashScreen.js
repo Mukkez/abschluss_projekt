@@ -21,9 +21,9 @@ const SplashScreen = () => {
                   navigate('/intro');
                   return prevProgress;
                }
-               return prevProgress + 10;
+               return prevProgress + 20;
             });
-         }, 500);
+         }, 300);
       }
    }, [intervalStarted, navigate]);
 

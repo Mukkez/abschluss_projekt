@@ -17,6 +17,7 @@ const MovieList = () => {
    const loadMovies = useCallback(async () => {
       const result = await defaultApi.getMoviesPopular(page);
       setMovies([...movies, ...result.data.results]);
+      // setMovies(result.data.results);
       setTotalPages(result.data.total_pages);
       setHasMore(false);
    }, [page, movies]);
@@ -76,7 +77,7 @@ const MovieList = () => {
 
    return (
       <div className='movielist-container'>
-         {searchMovies && movies.length === 0 ? (
+         {searchMovies && movies.length === 10000000 ? (
             <div className='no-result'>
                <img src={noResult} alt='' />
             </div>

@@ -8,17 +8,13 @@ const moviesAPI = {
    getMoviesPopular: (page) => {
       return axios.get(`${API_URL}/movie/popular?api_key=${API_KEY}&language=en&page=${page}&include_adult=false`);
    },
-   // Movies abfrage (top_rated)
-   getAllMovies: (page) => {
-      return axios.get(`${API_URL}/movie/top_rated?api_key=${API_KEY}&language=en&page=${page}&include_adult=false`);
+   // Movies abfrage (upcoming)
+   getUpcomingMovieDetails: (page) => {
+      return axios.get(`${API_URL}/movie/upcoming?api_key=${API_KEY}&language=en&page=${page}&include_adult=false`);
    },
    // MovieDetails abfrage (all)
    getMovieDetails: (movieId) => {
       return axios.get(`${API_URL}/movie/${movieId}?api_key=${API_KEY}&language=en&include_adult=false`);
-   },
-   // Movie abfrage (single)
-   getMovie: (movieId) => {
-      return axios.get(`{API_URL}/movie/${movieId}?api_key=${API_KEY}&language=en&include_adult=false`);
    },
    // Genres abfrage (all)
    getGenres: () => {
@@ -31,6 +27,8 @@ const moviesAPI = {
    // Search abfrage (Movies)
    searchMovies: (query, page) => {
       return axios.get(`${API_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=en&page=${page}&include_adult=true`);
+
+      // Alternavtie multi search (Movies, People, TV)
       // return axios.get(`${API_URL}/search/multi?api_key=${API_KEY}&language=en-US&query=${page}&page=1&include_adult=false`);
    },
    // Videos abfrage (Movies)
