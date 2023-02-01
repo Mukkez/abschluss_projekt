@@ -6,6 +6,11 @@ import popcorn from '../assets/img/popcorn.gif';
 const SplashScreen = () => {
    const navigate = useNavigate();
    const [progress, setProgress] = useState(0);
+   const [intervalStarted, setIntervalStarted] = useState(false);
+
+   const handleClick = () => {
+      setIntervalStarted(true);
+   };
 
    useEffect(() => {
       if (intervalStarted) {
@@ -23,7 +28,7 @@ const SplashScreen = () => {
    }, [intervalStarted, navigate]);
 
    return (
-      <div className='splash-screen-container'>
+      <div className='splash-screen-container' onClick={handleClick}>
          <img src={popcorn} alt='Animated logo' className='splash-screen-logo' />
          <div className='splash-screen-text'>
             <p>.MOV</p>
