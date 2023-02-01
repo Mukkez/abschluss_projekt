@@ -27,7 +27,7 @@ const Genres_Search = () => {
          <MovieList movies={movies} />
          <Footer />
          <p>{activeGenre}</p>
-         <p>{activeGenre}</p>
+         <p>{searchValue}</p>
       </div>
    );
 };
