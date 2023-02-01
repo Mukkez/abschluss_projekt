@@ -7,20 +7,27 @@ import Footer from '../components/Footer';
 import '../styles/pages/GenresSearch.css';
 
 const Genres_Search = () => {
-   const [activeGenre] = useState(null);
+   const [activeGenre, setActiveGenre] = useState(null);
+   const [searchValue, setSearchValue] = useState('');
 
    const handleGenreClick = (genreId) => {
-      activeGenre(genreId);
+      setActiveGenre(genreId);
+   };
+
+   const handleSearchValue = (value) => {
+      setSearchValue(value);
    };
 
    const [movies] = useState([]);
 
    return (
       <div className='genresSerach-contrainer'>
-         <SearchBar />
+         <SearchBar onSearch={handleSearchValue} />
          <MovieGenre onGenreClick={handleGenreClick} />
          <MovieList movies={movies} />
          <Footer />
+         <p>{activeGenre}</p>
+         <p>{activeGenre}</p>
       </div>
    );
 };

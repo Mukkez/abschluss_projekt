@@ -17,7 +17,6 @@ const MovieList = () => {
    const loadMovies = useCallback(async () => {
       const result = await defaultApi.getMoviesPopular(page);
       setMovies([...movies, ...result.data.results]);
-      // setMovies(result.data.results);
       setTotalPages(result.data.total_pages);
       setHasMore(false);
    }, [page, movies]);
@@ -99,9 +98,9 @@ const MovieList = () => {
          ) : (
             <>
                <div className='movie-list'>
-                  <p className='movie-list-page'>
+                  {/* <p className='movie-list-page'>
                      Page: {page} / {totalPages}
-                  </p>
+                  </p> */}
                   {movies.map((movie) => (
                      <div className='movie-card-container' key={movie.id}>
                         <MovieCard movie={movie} />
