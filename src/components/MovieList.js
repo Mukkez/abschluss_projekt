@@ -62,6 +62,7 @@ const MovieList = () => {
          searchMovies();
       } else if (genre) {
          loadMoviesByGenre();
+         document.querySelector('.movie-list-page').scrollIntoView({ block: 'start' });
       } else if (hasMore) {
          setHasMore(true);
          loadMovies();
